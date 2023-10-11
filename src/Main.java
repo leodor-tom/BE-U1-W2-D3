@@ -26,6 +26,8 @@ public class Main {
         Customer giacomo = new Customer("Giacomo");
 
         List<Product> products = Arrays.asList(book, book2, book3, book4, toy, phone, babyBottle, diapers, stroller, toyCar, actionFigure, legoSet);
+
+
         Order orderAldo = new Order(aldo, products);
         Order orderAldo2 = new Order(aldo, products);
         Order orderAldo3 = new Order(aldo, products);
@@ -36,9 +38,11 @@ public class Main {
         Order orderGiovanni3 = new Order(giovanni, products);
         Order orderGiovanni4 = new Order(giovanni, products);
         Order orderGiovanni5 = new Order(giovanni, products);
-        Order prderGiacomo = new Order(giacomo, products);
+        Order orderGiacomo = new Order(giacomo, products);
         Order orderGiacomo2 = new Order(giacomo, products);
 
+        List<Order> orders = Arrays.asList(orderAldo, orderAldo2, orderAldo3, orderAldo4, orderAldo5, orderGiovanni,
+                orderGiovanni2, orderGiovanni3, orderGiovanni4, orderGiovanni5, orderGiacomo, orderGiacomo2);
 
         List<Product> booksProductsLessThan100 = products.stream()
                 .filter(product -> "Books".equalsIgnoreCase(product.getCategory()) && product.getPrice() < 100)
@@ -46,6 +50,10 @@ public class Main {
         List<Product> babyProducts = products.stream()
                 .filter(product -> "baby".equalsIgnoreCase(product.getCategory()))
                 .toList();
+        /*List<Product> babyProducts = orders.stream()
+                .flatMap(order -> order.getProducts().stream())
+                .filter(product -> "baby".equalsIgnoreCase(product.getCategory()))
+                .toList();*/
         List<Product> boysProducts = products.stream()
                 .filter(product -> "boys".equalsIgnoreCase(product.getCategory()))
                 .toList();
