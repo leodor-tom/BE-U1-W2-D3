@@ -1,5 +1,7 @@
 package utilities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Customer {
@@ -7,6 +9,7 @@ public class Customer {
     private String name;
     private Integer tier;
     private Integer orderCount;
+    private List<Order> orders;
 
     public Customer(String name) {
         if (name == null || name.trim().isEmpty()) throw new IllegalArgumentException("Name cannot be null or empty");
@@ -18,6 +21,8 @@ public class Customer {
     }
 
     public void placeOrder(Order order) {
+        if (this.orders == null) this.orders = new ArrayList<>();
+        this.orders.add(order);
         this.orderCount++;
         updateTier();
     }
@@ -26,6 +31,14 @@ public class Customer {
         if (orderCount % 5 == 0) {
             this.tier = Math.min(this.tier + 1, 8);
         }
+    }
+
+    public Integer getTier() {
+        return tier;
+    }
+
+    public List<Order> getOrder() {
+        return orders;
     }
 
     public void setName(String name) {
